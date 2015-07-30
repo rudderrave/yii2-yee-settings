@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
+use yii\db\Schema;
 
 class m150719_154955_add_setting_menu_links extends Migration
 {
@@ -11,11 +11,11 @@ class m150719_154955_add_setting_menu_links extends Migration
 
         $this->insert('menu_link',
             ['id' => 'settings', 'menu_id' => 'admin-main-menu', 'label' => 'Settings',
-            'image' => 'cog', 'order' => 20]);
+                'image' => 'cog', 'order' => 20]);
 
         $this->insert('menu_link',
             ['id' => 'settings-general', 'menu_id' => 'admin-main-menu', 'link' => '/settings',
-            'label' => 'Links', 'parent_id' => 'menu', 'order' => 2]);
+                'label' => 'General Settings', 'parent_id' => 'settings', 'order' => 1]);
 
     }
 

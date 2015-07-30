@@ -1,16 +1,19 @@
 <?php
 
-namespace yee\settings\models;
+namespace yeesoft\settings\models;
 
 /**
  * This is the model class for table "setting".
  *
- * @property string $id
+ * @property string $key
  * @property string $group
  * @property string $value
+ *
+ * @author Taras Makitra <makitrataras@gmail.com>
  */
 class Setting extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -25,9 +28,9 @@ class Setting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
+            [['key'], 'required'],
             [['value'], 'string'],
-            [['id', 'group'], 'string', 'max' => 64],
+            [['key', 'group'], 'string', 'max' => 64],
         ];
     }
 
@@ -37,9 +40,21 @@ class Setting extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'key' => 'Key',
             'group' => 'Group',
             'value' => 'Value',
         ];
+    }
+
+    /**
+     * Get setting by group and key
+     *
+     * @param type $group
+     * @param type $key
+     * @return type
+     */
+    public static function getSetting($group, $key)
+    {
+        return self::findOne(['group' => $group, 'key' => $key]);
     }
 }

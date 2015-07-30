@@ -1,76 +1,79 @@
 <?php
 
-use yii\helpers\Url;
-use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yeesoft\grid\GridView;
-use app\models\Setting;
-use yeesoft\gridquicklinks\GridQuickLinks;
+use yeesoft\settings\assets\SettingsAsset;
+use yeesoft\settings\models\GeneralSettings;
 use yeesoft\usermanagement\components\GhostHtml;
-use webvimark\extensions\GridPageSize\GridPageSize;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\SettingSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model app\models\Setting */
+/* @var $form yii\widgets\ActiveForm */
 
-$this->title = 'Settings';
+$this->title = 'General Settings';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+Yii::$app->assetManager->forceCopy = true;
+SettingsAsset::register($this);
 ?>
 <div class="setting-index">
 
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-            <?= GhostHtml::a('Add New', ['create'],
-                ['class' => 'btn btn-sm btn-primary'])
+    <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
+
+    <div class="setting-form">
+        <?php
+        $form = ActiveForm::begin([
+            'id' => 'setting-form',
+            'validateOnBlur' => false,
+            'fieldConfig' => [
+                'template' => "<div class=\"settings-group\"><div class=\"settings-label\">{label}</div>\n<div class=\"settings-field\">{input}\n{hint}\n{error}</div></div>"
+            ],
+        ])
+        ?>
+
+        <?=
+        $form->field($model, 'title')->textInput(['maxlength' => true])
+            ->hint($model->getDescription('title'))
+        ?>
+
+        <?=
+        $form->field($model, 'description')->textInput(['maxlength' => true])
+            ->hint($model->getDescription('description'))
+        ?>
+
+        <?=
+        $form->field($model, 'email')->textInput(['maxlength' => true])
+            ->hint($model->getDescription('email'))
+        ?>
+
+        <?=
+        $form->field($model, 'timezone',
+            ['options' => ['class' => 'form-group select-field']])
+            ->dropDownList(GeneralSettings::getTimezones(), ['class' => ''])->hint($model->getDescription('timezone'))
+        ?>
+
+        <?=
+        $form->field($model, 'dateformat',
+            ['options' => ['class' => 'form-group select-field']])
+            ->dropDownList(GeneralSettings::getDateFormats(), ['class' => ''])->hint($model->getDescription('dateformat'))
+        ?>
+
+        <?=
+        $form->field($model, 'timeformat',
+            ['options' => ['class' => 'form-group select-field']])
+            ->dropDownList(GeneralSettings::getTimeFormats(), ['class' => ''])->hint($model->getDescription('timeformat'))
+        ?>
+
+        <div class="form-group">
+            <?=
+            GhostHtml::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
+                ['class' => 'btn btn-primary'])
             ?>
         </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
+        <?php ActiveForm::end(); ?>
 
-            <div class="row">
-                <div class="col-sm-12 text-right">
-                    <?=  GridPageSize::widget(['pjaxId' => 'setting-grid-pjax']) ?>
-                </div>
-            </div>
-
-            <?php 
-            Pjax::begin([
-                'id' => 'setting-grid-pjax',
-            ])
-            ?>
-
-            <?= 
-            GridView::widget([
-                'id' => 'setting-grid',
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'bulkActionOptions' => [
-                    'gridId' => 'setting-grid',
-                    'actions' => [ Url::to(['bulk-delete']) => 'Delete'] //Configure here you bulk actions
-                ],
-                'columns' => [
-                    ['class' => 'yii\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
-                    [
-                        'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'title' => function(Setting $model) {
-                        return Html::a($model->id,
-                                ['view', 'id' => $model->id], ['data-pjax' => 0]);
-                    },
-                    ],
-
-            'id',
-            'group',
-            'value:ntext',
-
-                ],
-            ]);
-            ?>
-
-            <?php Pjax::end() ?>
-        </div>
     </div>
 </div>
 

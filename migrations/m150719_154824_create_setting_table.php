@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
+use yii\db\Schema;
 
 class m150719_154824_create_setting_table extends Migration
 {
@@ -15,13 +15,14 @@ class m150719_154824_create_setting_table extends Migration
 
         $this->createTable('setting',
             [
-            'id' => Schema::TYPE_STRING.'(64) COLLATE utf8_unicode_ci NOT NULL',
-            'group' => Schema::TYPE_STRING.'(64) COLLATE utf8_unicode_ci DEFAULT "general"',
-            'value' => Schema::TYPE_TEXT.' COLLATE utf8_unicode_ci NOT NULL',
+                'group' => Schema::TYPE_STRING . '(64) COLLATE utf8_unicode_ci DEFAULT "general"',
+                'key' => Schema::TYPE_STRING . '(64) COLLATE utf8_unicode_ci NOT NULL',
+                'value' => Schema::TYPE_TEXT . ' COLLATE utf8_unicode_ci NOT NULL',
+                'description' => Schema::TYPE_TEXT . ' COLLATE utf8_unicode_ci DEFAULT NULL',
             ], $tableOptions);
 
-        $this->addPrimaryKey('pk', 'menu', 'id');
-		$this->createIndex('setting_group', 'setting', 'group');
+        $this->addPrimaryKey('pk', 'menu', ['group', 'key']);
+        $this->createIndex('setting_group', 'setting', 'group');
     }
 
     public function down()
