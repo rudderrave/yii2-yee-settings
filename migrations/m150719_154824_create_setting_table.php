@@ -21,7 +21,7 @@ class m150719_154824_create_setting_table extends Migration
                 'description' => Schema::TYPE_TEXT . ' COLLATE utf8_unicode_ci DEFAULT NULL',
             ], $tableOptions);
 
-        $this->addPrimaryKey('pk', 'menu', ['group', 'key']);
+        $this->addPrimaryKey('pk', 'setting', ['group', 'key']);
         $this->createIndex('setting_group', 'setting', 'group');
     }
 
