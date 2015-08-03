@@ -9,18 +9,12 @@ use yii\base\Model;
  */
 class BaseSettingsModel extends Model
 {
-    public $group;
-    private $_descriptions = [];
-
     /**
-     * @inheritdoc
+     * Array with fields descriptions
+     *
+     * @var array
      */
-    public function rules()
-    {
-        return [
-            [['group'], 'default', 'value' => 'general'],
-        ];
-    }
+    private $_descriptions = [];
 
     /**
      * Load settings from DB
@@ -30,7 +24,7 @@ class BaseSettingsModel extends Model
     public function init()
     {
         parent::init();
-        $settings = Setting::find()->filterWhere(['group' => $this->group])->all();
+        $settings = Setting::find()->filterWhere(['group' => static::GROUP])->all();
 
         foreach ($settings as $setting) {
             $this->{$setting->key} = $setting->value;
@@ -45,10 +39,8 @@ class BaseSettingsModel extends Model
     {
         $settings = get_object_vars($this);
 
-        unset($settings['group']);
-
         foreach ($settings as $key => $value) {
-            $setting = Setting::findOne(['group' => $this->group, 'key' => $key]);
+            $setting = Setting::findOne(['group' => static::GROUP, 'key' => $key]);
             if ($setting) {
                 $setting->value = $value;
                 $setting->save();

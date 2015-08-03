@@ -12,12 +12,6 @@ use Yii;
  */
 abstract class BaseSettingsController extends BaseController
 {
-    /**
-     * Settings Group.
-     *
-     * @var string
-     */
-    public $group;
 
     /**
      * Settings model class.

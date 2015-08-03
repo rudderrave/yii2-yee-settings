@@ -13,8 +13,6 @@ use yii\widgets\ActiveForm;
 $this->title = 'General Settings';
 $this->params['breadcrumbs'][] = $this->title;
 
-
-Yii::$app->assetManager->forceCopy = true;
 SettingsAsset::register($this);
 ?>
 <div class="setting-index">

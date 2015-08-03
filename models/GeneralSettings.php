@@ -9,7 +9,8 @@ use yii\helpers\ArrayHelper;
  */
 class GeneralSettings extends BaseSettingsModel
 {
-    public $group = 'general';
+    const GROUP = 'general';
+
     public $title;
     public $description;
     public $email;
