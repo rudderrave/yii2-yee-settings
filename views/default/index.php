@@ -2,12 +2,11 @@
 
 use yeesoft\settings\assets\SettingsAsset;
 use yeesoft\settings\models\GeneralSettings;
-use yeesoft\usermanagement\components\GhostHtml;
-use yii\helpers\Html;
+use yeesoft\widgets\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Setting */
+/* @var $model yeesoft\models\Setting */
 /* @var $form yii\widgets\ActiveForm */
 
 $this->title = 'General Settings';
@@ -65,7 +64,7 @@ SettingsAsset::register($this);
 
         <div class="form-group">
             <?=
-            GhostHtml::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
+            Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
                 ['class' => 'btn btn-primary'])
             ?>
         </div>

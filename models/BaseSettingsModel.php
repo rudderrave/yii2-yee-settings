@@ -2,6 +2,7 @@
 
 namespace yeesoft\settings\models;
 
+use yeesoft\models\Setting;
 use yii\base\Model;
 
 /**
