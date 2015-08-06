@@ -1,8 +1,8 @@
 <?php
 
+use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
 use yeesoft\settings\models\GeneralSettings;
-use yeesoft\widgets\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */

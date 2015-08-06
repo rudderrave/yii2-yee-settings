@@ -2,7 +2,7 @@
 
 namespace yeesoft\settings\controllers;
 
-use yeesoft\base\controllers\admin\BaseController;
+use yeesoft\controllers\admin\BaseController;
 use Yii;
 
 /**
