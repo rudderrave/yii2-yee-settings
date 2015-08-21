@@ -6,11 +6,11 @@ use yeesoft\controllers\admin\BaseController;
 use Yii;
 
 /**
- * BaseSettingsController implements base actions for settings pages.
+ * SettingsBaseController implements base actions for settings pages.
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-abstract class BaseSettingsController extends BaseController
+abstract class SettingsBaseController extends BaseController
 {
 
     /**

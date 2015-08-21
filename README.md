@@ -156,13 +156,13 @@ SettingsAsset::register($this);
 </div>
 ```
 
-- Create settings controller by extending **yeesoft\settings\controllers\BaseSettingsController** class.
+- Create settings controller by extending **yeesoft\settings\controllers\SettingsBaseController** class.
 Controller should contain `$modelClass` and `$viewPath` properties which contain recently created model and view 
 
 ```php
 namespace backend\controllers;
 
-class ImageSettingsController extends \yeesoft\settings\controllers\BaseSettingsController
+class ImageSettingsController extends \yeesoft\settings\controllers\SettingsBaseController
 {
     public $modelClass = '\backend\models\ImageSettings';
     public $viewPath   = '@backend/views/image-settings/index';
