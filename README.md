@@ -50,7 +50,7 @@ Configuration
 ```php
 'components'=>[
 	'settings' => [
-		'class' => 'yeesoft\settings\components\Settings'
+		'class' => 'yeesoft\components\Settings'
 	],
 ],
 ```
