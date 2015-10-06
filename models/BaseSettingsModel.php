@@ -4,6 +4,7 @@ namespace yeesoft\settings\models;
 
 use yeesoft\models\Setting;
 use yii\base\Model;
+use Yii;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -28,7 +29,7 @@ class BaseSettingsModel extends Model
         $settings = Setting::find()->filterWhere(['group' => static::GROUP])->all();
 
         foreach ($settings as $setting) {
-            $this->{$setting->key} = $setting->value;
+            $this->setAttributes([$setting->key => $setting->value]);
             $this->_descriptions[$setting->key] = $setting->description;
         }
     }
@@ -39,12 +40,15 @@ class BaseSettingsModel extends Model
     public function save()
     {
         $settings = get_object_vars($this);
+        unset($settings['_descriptions']);
 
         foreach ($settings as $key => $value) {
             $setting = Setting::findOne(['group' => static::GROUP, 'key' => $key]);
             if ($setting) {
                 $setting->value = $value;
                 $setting->save();
+            } else {
+                Yii::$app->settings->set([static::GROUP, $key], $value);
             }
         }
     }
