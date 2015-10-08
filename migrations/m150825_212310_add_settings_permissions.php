@@ -15,6 +15,7 @@ class m150825_212310_add_settings_permissions extends Migration
         $this->insert('auth_item', ['name' => '/admin/settings/default/*', 'type' => '3', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
         $this->insert('auth_item', ['name' => '/admin/settings/default/index', 'type' => '3', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
         $this->insert('auth_item', ['name' => '/admin/settings/reading/index', 'type' => '3', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
+        $this->insert('auth_item', ['name' => '/admin/settings/cache/flush', 'type' => '3', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
 
         $this->insert('auth_item', ['name' => 'changeGeneralSettings', 'type' => '2', 'description' => 'Change general settings', 'group_code' => 'settings', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
         $this->insert('auth_item', ['name' => 'changeReadingSettings', 'type' => '2', 'description' => 'Change reading settings', 'group_code' => 'settings', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
