@@ -20,14 +20,13 @@ class CacheController extends BaseController
 
     public function actionFlush()
     {
-        $frontendAssetPath = Yii::getAlias('@frontend') .'/web/assets/';
-        $backendAssetPath = Yii::getAlias('@backend') .'/web/assets/';
+        $frontendAssetPath = Yii::getAlias('@frontend') . '/web/assets/';
+        $backendAssetPath = Yii::getAlias('@backend') . '/web/assets/';
 
         YeeHelper::recursiveDelete($frontendAssetPath);
         YeeHelper::recursiveDelete($backendAssetPath);
 
-        if (Yii::$app->cache->flush())
-        {
+        if (Yii::$app->cache->flush()) {
             Yii::$app->session->setFlash('crudMessage', 'Cache has been flushed.');
         } else {
             Yii::$app->session->setFlash('crudMessage', 'Failed to flush cache.');

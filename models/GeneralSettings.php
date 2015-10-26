@@ -2,6 +2,7 @@
 
 namespace yeesoft\settings\models;
 
+use yeesoft\behaviors\MultilingualSettingsBehavior;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -29,6 +30,21 @@ class GeneralSettings extends BaseSettingsModel
                 [['email'], 'email'],
                 [['description'], 'safe'],
             ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'multilingualSettings' => [
+                'class' => MultilingualSettingsBehavior::className(),
+                'attributes' => [
+                    'title'
+                ]
+            ],
+        ];
     }
 
     public function attributeLabels()

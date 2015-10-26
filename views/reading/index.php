@@ -2,7 +2,6 @@
 
 use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
-use yeesoft\settings\models\GeneralSettings;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -29,16 +28,10 @@ SettingsAsset::register($this);
         ])
         ?>
 
-        <?=
-        $form->field($model, 'page_size')->textInput(['maxlength' => true])
-            ->hint($model->getDescription('page_size'))
-        ?>
+        <?= $form->field($model, 'page_size')->textInput(['maxlength' => true])->hint($model->getDescription('page_size')) ?>
 
         <div class="form-group">
-            <?=
-            Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
-                ['class' => 'btn btn-primary'])
-            ?>
+            <?= Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save', ['class' => 'btn btn-primary']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

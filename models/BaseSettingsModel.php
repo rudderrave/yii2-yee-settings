@@ -2,9 +2,10 @@
 
 namespace yeesoft\settings\models;
 
+use yeesoft\helpers\LanguageHelper;
 use yeesoft\models\Setting;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -18,20 +19,45 @@ class BaseSettingsModel extends Model
      */
     private $_descriptions = [];
 
-    /**
-     * Load settings from DB
-     *
-     * @inheritdoc
-     */
-    public function init()
+    public function attributes()
     {
-        parent::init();
+        $settings = Setting::find()->filterWhere(['group' => static::GROUP])->all();
+        $attributes = [];
+        foreach ($settings as $setting) {
+            $isLangAttr = ($setting->language && $setting->language != Yii::$app->language);
+            $newKey = ($isLangAttr) ? $setting->key . '_' . $setting->language : $setting->key;
+            $attributes[] = $newKey;
+
+            if (!isset($this->$newKey)) {
+                $this->$newKey = '';
+            }
+        }
+
+        return $attributes;
+    }
+
+    public function safeAttributes()
+    {
+        return $this->attributes();
+    }
+
+    public function __construct($config = array())
+    {
+        parent::__construct($config);
+
         $settings = Setting::find()->filterWhere(['group' => static::GROUP])->all();
 
         foreach ($settings as $setting) {
-            $this->setAttributes([$setting->key => $setting->value]);
-            $this->_descriptions[$setting->key] = $setting->description;
+            $isLangAttr = ($setting->language && $setting->language != Yii::$app->language);
+            $newKey = ($isLangAttr) ? $setting->key . '_' . $setting->language : $setting->key;
+            $this->$newKey = $setting->value;
+            $this->_descriptions[$newKey] = $setting->description;
         }
+    }
+
+    public function __set($name, $value)
+    {
+        $this->{$name} = $value;
     }
 
     /**
@@ -39,15 +65,28 @@ class BaseSettingsModel extends Model
      */
     public function save()
     {
+        $languages = array_keys(LanguageHelper::getLanguages());
+
+        $attributes = [];
+        if (($this->getBehavior('multilingualSettings') !== NULL)) {
+            $attributes = $this->getBehavior('multilingualSettings')->attributes;
+        }
+
+        $skipAttributes = [];
         $settings = get_object_vars($this);
         unset($settings['_descriptions']);
 
+        foreach ($attributes as $key) {
+            foreach ($languages as $language) {
+                $field = $key . (($language == Yii::$app->language) ? '' : '_' . $language);
+                $value = Yii::$app->getRequest()->post($field);
+                Yii::$app->settings->set([static::GROUP, $key, $language], $this->$field);
+                $skipAttributes[] = $field;
+            }
+        }
+
         foreach ($settings as $key => $value) {
-            $setting = Setting::findOne(['group' => static::GROUP, 'key' => $key]);
-            if ($setting) {
-                $setting->value = $value;
-                $setting->save();
-            } else {
+            if (!in_array($key, $skipAttributes)) {
                 Yii::$app->settings->set([static::GROUP, $key], $value);
             }
         }
