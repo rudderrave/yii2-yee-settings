@@ -6,12 +6,12 @@
 .settings-group .settings-field {
     width: auto;
     overflow: hidden;
-    min-width: 200px;
+    min-width: 220px;
 }
 
 .settings-group .settings-label {
     padding-top: 7px;
-    width: 200px;
+    width: 220px;
     float: left;
 }
 

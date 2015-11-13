@@ -44,6 +44,8 @@ abstract class SettingsBaseController extends BaseController
         $modelClass = $this->modelClass;
         $model = new $modelClass();
 
+        //print_r($model->attributes());die;
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->save();
             Yii::$app->session->setFlash('crudMessage', 'Your settings have been saved.');

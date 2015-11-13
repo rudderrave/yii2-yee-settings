@@ -45,6 +45,33 @@ class BaseSettingsModel extends Model
     {
         parent::__construct($config);
 
+        //Create lang setting if not exists for multilang settings
+        if (($this->getBehavior('multilingualSettings') !== NULL)) {
+            $languages = LanguageHelper::getLanguages();
+            $attributes = $this->getBehavior('multilingualSettings')->attributes;
+
+            //Get existing multilanguage settings
+            $multilingualSettings = Setting::find()
+                ->filterWhere(['group' => static::GROUP])
+                ->filterWhere(['in','key',$attributes])
+                ->all();
+
+            $existingSettings = [];
+            foreach ($multilingualSettings as $multilingualSetting) {
+                $existingSettings[$multilingualSetting->key][$multilingualSetting->language] = TRUE;
+            }
+
+            //Create nonexisting settings
+            foreach ($attributes as $attribute) {
+                foreach ($languages as $language => $languageTitle) {
+                    if(!isset($existingSettings[$attribute][$language])){
+                        Yii::$app->settings->set([static::GROUP, $attribute, $language], '');
+                    }
+                }
+            }
+
+        }
+
         $settings = Setting::find()->filterWhere(['group' => static::GROUP])->all();
 
         foreach ($settings as $setting) {

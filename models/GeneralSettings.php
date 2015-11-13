@@ -4,6 +4,7 @@ namespace yeesoft\settings\models;
 
 use yeesoft\behaviors\MultilingualSettingsBehavior;
 use yii\helpers\ArrayHelper;
+use Yii;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -41,7 +42,7 @@ class GeneralSettings extends BaseSettingsModel
             'multilingualSettings' => [
                 'class' => MultilingualSettingsBehavior::className(),
                 'attributes' => [
-                    'title'
+                    'title', 'description'
                 ]
             ],
         ];
@@ -50,12 +51,12 @@ class GeneralSettings extends BaseSettingsModel
     public function attributeLabels()
     {
         return [
-            'title' => 'Site Title',
-            'description' => 'Site Description',
-            'email' => 'Admin Email',
-            'timezone' => 'Timezone',
-            'dateformat' => 'Date Format',
-            'timeformat' => 'Time Format',
+            'title' => Yii::t('yee/settings', 'Site Title'),
+            'description' => Yii::t('yee/settings', 'Site Description'),
+            'email' => Yii::t('yee/settings', 'Admin Email'),
+            'timezone' => Yii::t('yee/settings', 'Timezone'),
+            'dateformat' => Yii::t('yee/settings', 'Date Format'),
+            'timeformat' => Yii::t('yee/settings', 'Time Format'),
         ];
     }
 

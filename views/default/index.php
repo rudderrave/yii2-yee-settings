@@ -5,12 +5,14 @@ use yeesoft\settings\assets\SettingsAsset;
 use yeesoft\settings\models\GeneralSettings;
 use yeesoft\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
+use Yii;
+use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */
 /* @var $form yeesoft\widgets\ActiveForm */
 
-$this->title = 'General Settings';
+$this->title = Yii::t('yee/settings', 'General Settings');
 $this->params['breadcrumbs'][] = $this->title;
 
 SettingsAsset::register($this);
@@ -34,7 +36,7 @@ SettingsAsset::register($this);
 
         <?= $form->field($model, 'title', ['multilingual' => true])->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'description')->textInput(['maxlength' => true])->hint($model->getDescription('description')) ?>
+        <?= $form->field($model, 'description', ['multilingual' => true])->textInput(['maxlength' => true])/*->hint($model->getDescription('description'))*/ ?>
 
         <?= $form->field($model, 'email')->textInput(['maxlength' => true])->hint($model->getDescription('email')) ?>
 
@@ -48,7 +50,7 @@ SettingsAsset::register($this);
             ->dropDownList(GeneralSettings::getTimeFormats(), ['class' => ''])->hint($model->getDescription('timeformat')) ?>
 
         <div class="form-group">
-            <?= Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton(Yee::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

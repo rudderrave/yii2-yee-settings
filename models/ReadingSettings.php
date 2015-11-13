@@ -3,6 +3,7 @@
 namespace yeesoft\settings\models;
 
 use yii\helpers\ArrayHelper;
+use Yii;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -28,7 +29,7 @@ class ReadingSettings extends BaseSettingsModel
     public function attributeLabels()
     {
         return [
-            'page_size' => 'Page Size',
+            'page_size' => Yii::t('yee/settings', 'Page Size'),
         ];
     }
 
