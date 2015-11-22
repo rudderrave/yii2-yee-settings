@@ -4,7 +4,6 @@ use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
 use yii\widgets\ActiveForm;
 use Yii;
-use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */
@@ -33,7 +32,7 @@ SettingsAsset::register($this);
         <?= $form->field($model, 'page_size')->textInput(['maxlength' => true])->hint($model->getDescription('page_size')) ?>
 
         <div class="form-group">
-            <?= Html::submitButton(Yee::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

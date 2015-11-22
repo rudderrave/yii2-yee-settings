@@ -6,7 +6,6 @@ use yeesoft\settings\models\GeneralSettings;
 use yeesoft\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
 use Yii;
-use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */
@@ -50,7 +49,7 @@ SettingsAsset::register($this);
             ->dropDownList(GeneralSettings::getTimeFormats(), ['class' => ''])->hint($model->getDescription('timeformat')) ?>
 
         <div class="form-group">
-            <?= Html::submitButton(Yee::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
