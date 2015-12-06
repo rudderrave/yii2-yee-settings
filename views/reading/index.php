@@ -3,7 +3,6 @@
 use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
 use yii\widgets\ActiveForm;
-use Yii;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */

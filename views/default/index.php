@@ -5,7 +5,6 @@ use yeesoft\settings\assets\SettingsAsset;
 use yeesoft\settings\models\GeneralSettings;
 use yeesoft\widgets\ActiveForm;
 use yeesoft\widgets\LanguagePills;
-use Yii;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */

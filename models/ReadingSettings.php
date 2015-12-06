@@ -2,8 +2,8 @@
 
 namespace yeesoft\settings\models;
 
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -23,6 +23,7 @@ class ReadingSettings extends BaseSettingsModel
             [
                 [['page_size'], 'required'],
                 [['page_size'], 'integer'],
+                ['page_size', 'default', 'value' => 10],
             ]);
     }
 

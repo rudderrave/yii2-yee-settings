@@ -3,8 +3,8 @@
 namespace yeesoft\settings\models;
 
 use yeesoft\behaviors\MultilingualSettingsBehavior;
-use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -30,6 +30,10 @@ class GeneralSettings extends BaseSettingsModel
                 [['title', 'email', 'timezone', 'dateformat', 'timeformat'], 'required'],
                 [['email'], 'email'],
                 [['description'], 'safe'],
+                ['title', 'default', 'value' => 'Yee Site'],
+                ['timezone', 'default', 'value' => 'Europe/London'],
+                ['dateformat', 'default', 'value' => 'F j, Y'],
+                ['timeformat', 'default', 'value' => 'g:i a'],
             ]);
     }
 
@@ -64,20 +68,24 @@ class GeneralSettings extends BaseSettingsModel
     {
         $timestamp = strtotime(date("Y") . '-01-22');
         return [
-            'F j, Y' => date("F j, Y", $timestamp),
-            'Y-m-d' => date("Y-m-d", $timestamp),
-            'm/d/Y' => date("m/d/Y", $timestamp),
-            'd/m/Y' => date("d/m/Y", $timestamp),
+            'medium' => Yii::$app->formatter->asDate($timestamp, "medium"),
+            'long' => Yii::$app->formatter->asDate($timestamp, "long"),
+            'full' => Yii::$app->formatter->asDate($timestamp, "full"),
+            'yyyy-MM-dd' => Yii::$app->formatter->asDate($timestamp, "yyyy-MM-dd"),
+            'dd/MM/yyyy' => Yii::$app->formatter->asDate($timestamp, "dd/MM/yyyy"),
+            'MM/dd/yyyy' => Yii::$app->formatter->asDate($timestamp, "MM/dd/yyyy"),
+            'dd.MM.yyyy' => Yii::$app->formatter->asDate($timestamp, "dd.MM.yyyy"),
         ];
     }
 
     public static function getTimeFormats()
     {
-        $timestamp = strtotime('2015-01-01 22:45:59');
+        $timestamp = strtotime('2015-01-01 09:45:59');
         return [
-            'g:i a' => date("g:i a", $timestamp),
-            'g:i A' => date("g:i A", $timestamp),
-            'H:i' => date("H:i", $timestamp),
+            'h:mm a' => Yii::$app->formatter->asTime($timestamp, "h:mm a"),
+            'hh:mm a' => Yii::$app->formatter->asTime($timestamp, "hh:mm a"),
+            'HH:mm' => Yii::$app->formatter->asTime($timestamp, "HH:mm"),
+            'H:mm' => Yii::$app->formatter->asTime($timestamp, "H:mm"),
         ];
     }
 
