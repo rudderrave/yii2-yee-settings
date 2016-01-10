@@ -7,6 +7,7 @@ use yeesoft\settings\components\AttributeDetails;
 use Yii;
 use yii\base\Model;
 use yii\validators\Validator;
+use yii\helpers\Inflector;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
@@ -57,7 +58,8 @@ class BaseSettingsModel extends Model
     {
         $attributes = $this->getAttributesDetails();
         foreach ($attributes as $attribute) {
-            Yii::$app->settings->set([$attribute->group, $attribute->key, $attribute->language], $this->{$attribute->field});
+            $field = $this->getMultilingualFieldName($attribute->field);
+            Yii::$app->settings->set([$attribute->group, $attribute->key, $attribute->language], $this->{$field});
         }
     }
 
@@ -81,6 +83,17 @@ class BaseSettingsModel extends Model
     }
 
     /**
+     * Converts `title_en-US` to `title_en_us`
+     *
+     * @param string $attribute
+     * @return string
+     */
+    protected function getMultilingualFieldName($attribute)
+    {
+        return Inflector::camel2id(Inflector::id2camel($attribute), "_");
+    }
+
+    /**
      * Generate list of attributes details object
      */
     protected function getAttributesDetails()
@@ -94,7 +107,7 @@ class BaseSettingsModel extends Model
         foreach ($modelAttributes as $attribute) {
             if (in_array($attribute, $multilingualAttributes)) {
                 foreach ($languages as $language) {
-                    $field = ($language == Yii::$app->language) ? $attribute : "{$attribute}_{$language}";
+                    $field = ($language == Yii::$app->language) ? $attribute : $this->getMultilingualFieldName("{$attribute}_{$language}");
                     $attributes[$field] = new AttributeDetails($field, $group, $attribute, $language);
                 }
             } else {
