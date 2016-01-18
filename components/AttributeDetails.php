@@ -2,6 +2,11 @@
 
 namespace yeesoft\settings\components;
 
+/**
+ * AttributeDetails.
+ *
+ * @author Taras Makitra <makitrataras@gmail.com>
+ */
 class AttributeDetails
 {
     public $field;

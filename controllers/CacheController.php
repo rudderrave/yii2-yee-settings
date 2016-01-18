@@ -7,7 +7,7 @@ use yeesoft\helpers\YeeHelper;
 use Yii;
 
 /**
- * ReadingController implements Reading Settings page.
+ * CacheController implements Flush Cache page.
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
