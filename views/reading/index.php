@@ -15,7 +15,10 @@ SettingsAsset::register($this);
 ?>
 <div class="setting-index">
 
-    <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
+    <div class="row">
+        <div class="col-lg-8"><h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3></div>
+        <div class="col-lg-4"></div>
+    </div>
 
     <div class="setting-form">
         <?php

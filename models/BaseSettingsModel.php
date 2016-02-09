@@ -6,8 +6,8 @@ use yeesoft\helpers\LanguageHelper;
 use yeesoft\settings\components\AttributeDetails;
 use Yii;
 use yii\base\Model;
-use yii\validators\Validator;
 use yii\helpers\Inflector;
+use yii\validators\Validator;
 
 /**
  * @author Taras Makitra <makitrataras@gmail.com>
