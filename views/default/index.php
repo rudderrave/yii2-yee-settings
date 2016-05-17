@@ -42,13 +42,13 @@ SettingsAsset::register($this);
         <?= $form->field($model, 'email')->textInput(['maxlength' => true])->hint($model->getDescription('email')) ?>
 
         <?= $form->field($model, 'timezone', ['options' => ['class' => 'form-group select-field']])
-            ->dropDownList(GeneralSettings::getTimezones(), ['class' => ''])->hint($model->getDescription('timezone')) ?>
+            ->dropDownList(GeneralSettings::getTimezones())->hint($model->getDescription('timezone')) ?>
 
         <?= $form->field($model, 'dateformat', ['options' => ['class' => 'form-group select-field']])
-            ->dropDownList(GeneralSettings::getDateFormats(), ['class' => ''])->hint($model->getDescription('dateformat')) ?>
+            ->dropDownList(GeneralSettings::getDateFormats())->hint($model->getDescription('dateformat')) ?>
 
         <?= $form->field($model, 'timeformat', ['options' => ['class' => 'form-group select-field']])
-            ->dropDownList(GeneralSettings::getTimeFormats(), ['class' => ''])->hint($model->getDescription('timeformat')) ?>
+            ->dropDownList(GeneralSettings::getTimeFormats())->hint($model->getDescription('timeformat')) ?>
 
         <div class="form-group">
             <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>

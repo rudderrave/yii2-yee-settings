@@ -125,11 +125,11 @@ class ImageSettings extends \yeesoft\settings\models\BaseSettingsModel
 use backend\models\ImageSettings;
 use yeesoft\settings\assets\SettingsAsset;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yeesoft\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ImageSetting */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yeesoft\widgets\ActiveForm */
 
 SettingsAsset::register($this);
 ?>

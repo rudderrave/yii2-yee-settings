@@ -2,11 +2,11 @@
 
 use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
-use yii\widgets\ActiveForm;
+use yeesoft\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yeesoft\widgets\ActiveForm */
 
 $this->title = Yii::t('yee/settings', 'Reading Settings');
 $this->params['breadcrumbs'][] = $this->title;

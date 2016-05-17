@@ -2,7 +2,6 @@
 
 namespace yeesoft\settings\models;
 
-use yeesoft\helpers\LanguageHelper;
 use yeesoft\settings\components\AttributeDetails;
 use Yii;
 use yii\base\Model;
@@ -100,7 +99,7 @@ class BaseSettingsModel extends Model
     {
         $attributes = [];
         $group = $this->getGroup();
-        $languages = array_keys(LanguageHelper::getLanguages());
+        $languages = array_keys(Yii::$app->yee->languages);
         $modelAttributes = parent::attributes();
         $multilingualAttributes = ($this->isMultilingual()) ? $this->getBehavior('multilingualSettings')->attributes : [];
 
