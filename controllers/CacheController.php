@@ -25,6 +25,14 @@ class CacheController extends BaseController
 
         YeeHelper::recursiveDelete($frontendAssetPath);
         YeeHelper::recursiveDelete($backendAssetPath);
+        
+        if (!is_dir($frontendAssetPath)) {
+            @mkdir($frontendAssetPath);
+        }
+        
+        if (!is_dir($backendAssetPath)) {
+            @mkdir($backendAssetPath);
+        }
 
         if (Yii::$app->cache->flush()) {
             Yii::$app->session->setFlash('crudMessage', 'Cache has been flushed.');
