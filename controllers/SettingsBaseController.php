@@ -2,7 +2,7 @@
 
 namespace yeesoft\settings\controllers;
 
-use yeesoft\controllers\admin\BaseController;
+use yeesoft\controllers\CrudController;
 use Yii;
 
 /**
@@ -10,7 +10,7 @@ use Yii;
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-abstract class SettingsBaseController extends BaseController
+abstract class SettingsBaseController extends CrudController
 {
 
     /**

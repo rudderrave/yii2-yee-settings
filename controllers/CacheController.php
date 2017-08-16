@@ -2,7 +2,7 @@
 
 namespace yeesoft\settings\controllers;
 
-use yeesoft\controllers\admin\BaseController;
+use yeesoft\controllers\CrudController;
 use yeesoft\helpers\YeeHelper;
 use Yii;
 
@@ -11,7 +11,7 @@ use Yii;
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-class CacheController extends BaseController
+class CacheController extends CrudController
 {
     /**
      * @inheritdoc
