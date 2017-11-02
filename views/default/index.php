@@ -4,7 +4,6 @@ use yeesoft\helpers\Html;
 use yeesoft\settings\assets\SettingsAsset;
 use yeesoft\settings\models\GeneralSettings;
 use yeesoft\widgets\ActiveForm;
-use yeesoft\widgets\LanguagePills;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\models\Setting */
@@ -19,7 +18,7 @@ SettingsAsset::register($this);
 
     <div class="row">
         <div class="col-lg-8"><h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3></div>
-        <div class="col-lg-4"><?= LanguagePills::widget() ?></div>
+        <div class="col-lg-4"><?php //LanguagePills::widget() ?></div>
     </div>
 
     <div class="setting-form">

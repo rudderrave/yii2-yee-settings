@@ -99,7 +99,7 @@ class BaseSettingsModel extends Model
     {
         $attributes = [];
         $group = $this->getGroup();
-        $languages = array_keys(Yii::$app->yee->languages);
+        $languages = array_keys(Yii::$app->languages);
         $modelAttributes = parent::attributes();
         $multilingualAttributes = ($this->isMultilingual()) ? $this->getBehavior('multilingualSettings')->attributes : [];
 
