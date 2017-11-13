@@ -2,14 +2,25 @@
 
 namespace yeesoft\settings\controllers;
 
+use yeesoft\settings\web\SettingsController;
+
 /**
  * DefaultController implements General Settings page.
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-class DefaultController extends SettingsBaseController
+class DefaultController extends SettingsController
 {
-    public $modelClass = 'yeesoft\settings\models\GeneralSettings';
-    public $viewPath = '@vendor/yeesoft/yii2-yee-settings/views/default/index';
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        $this->modelClass = $this->module->defaultSettingsModel;
+        $this->viewPath = $this->module->defaultSettingsView;
+    }
 
 }

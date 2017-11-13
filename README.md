@@ -99,11 +99,11 @@ VALUES ('image','width','120','Default images width'),
        ('image','height','90','Default images height');
 ```
 
-- Create settings model for settings group by extending **yeesoft\settings\models\BaseSettingsModel** class. This model should contain `GROUP` const with settings group name. Also model should contain list of properties with names that match settings name. In model you can specify rules for fields.
+- Create settings model for settings group by extending **yeesoft\settings\db\SettingsModel** class. This model should contain `GROUP` const with settings group name. Also model should contain list of properties with names that match settings name. In model you can specify rules for fields.
 ```php
 namespace backend\models;
 
-class ImageSettings extends \yeesoft\settings\models\BaseSettingsModel
+class ImageSettings extends \yeesoft\settings\db\SettingsModel
 {
     const GROUP = 'image';
 

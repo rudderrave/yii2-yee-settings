@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yee-soft.com/
  * @copyright Copyright (c) 2015 Taras Makitra
@@ -14,6 +15,7 @@ namespace yeesoft\settings;
  */
 class SettingsModule extends \yii\base\Module
 {
+
     /**
      * Version number of the module.
      */
@@ -23,5 +25,15 @@ class SettingsModule extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'yeesoft\settings\controllers';
+
+    /**
+     * @inheritdoc
+     */
+    public $defaultSettingsModel = 'yeesoft\settings\models\GeneralSettings';
+
+    /**
+     * @inheritdoc
+     */
+    public $defaultSettingsView = '@vendor/yeesoft/yii2-yee-settings/views/default/index';
 
 }

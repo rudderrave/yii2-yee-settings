@@ -1,17 +1,24 @@
 <?php
 
-namespace yeesoft\settings\controllers;
+namespace yeesoft\settings\web;
 
-use yeesoft\controllers\CrudController;
+use yeesoft\controllers\BaseController;
 use Yii;
 
 /**
- * SettingsBaseController implements base actions for settings pages.
+ * SettingsController implements base actions for settings pages.
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-abstract class SettingsBaseController extends CrudController
+abstract class SettingsController extends BaseController
 {
+
+    /**
+     * Layout file for admin panel
+     *
+     * @var string
+     */
+    public $layout = '@vendor/yeesoft/yii2-yee-core/views/layouts/main';
 
     /**
      * Settings model class.
@@ -28,14 +35,7 @@ abstract class SettingsBaseController extends CrudController
     public $viewPath;
 
     /**
-     * Action where settings is located
-     *
-     * @var array
-     */
-    public $enableOnlyActions = ['index'];
-
-    /**
-     * Lists all settings in group.
+     * Lists all settings in the group.
      *
      * @return mixed
      */
@@ -47,9 +47,10 @@ abstract class SettingsBaseController extends CrudController
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->save();
             Yii::$app->session->setFlash('success', 'Your settings have been saved.');
-            return $this->redirect($this->enableOnlyActions);
+            return $this->redirect(['index']);
         }
 
         return $this->renderIsAjax($this->viewPath, compact('model'));
     }
+
 }

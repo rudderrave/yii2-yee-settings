@@ -2,7 +2,7 @@
 
 namespace yeesoft\settings\controllers;
 
-use yeesoft\controllers\CrudController;
+use yeesoft\controllers\BaseController;
 use yeesoft\helpers\YeeHelper;
 use Yii;
 
@@ -11,12 +11,8 @@ use Yii;
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-class CacheController extends CrudController
+class CacheController extends BaseController
 {
-    /**
-     * @inheritdoc
-     */
-    public $enableOnlyActions = ['flush'];
 
     public function actionFlush()
     {
@@ -25,11 +21,11 @@ class CacheController extends CrudController
 
         YeeHelper::recursiveDelete($frontendAssetPath);
         YeeHelper::recursiveDelete($backendAssetPath);
-        
+
         if (!is_dir($frontendAssetPath)) {
             @mkdir($frontendAssetPath);
         }
-        
+
         if (!is_dir($backendAssetPath)) {
             @mkdir($backendAssetPath);
         }
@@ -42,4 +38,5 @@ class CacheController extends CrudController
 
         return Yii::$app->getResponse()->redirect(Yii::$app->getRequest()->referrer);
     }
+
 }

@@ -1,21 +1,25 @@
-.settings-group {
+.settings-form .settings-group {
     width: 100%;
     overflow: hidden;
 }
 
-.settings-group .settings-field {
+.settings-form .settings-group .settings-field {
     width: auto;
     overflow: hidden;
     min-width: 220px;
 }
 
-.settings-group .settings-label {
+.settings-form .settings-group .settings-label {
     padding-top: 7px;
     width: 220px;
     float: left;
 }
 
-.select-field .settings-group, .select-field .settings-group .settings-field {
-    overflow: visible !important;
+.settings-form .form-language-switcher {
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
+.settings-form button[type="submit"] {
+    min-width: 140px;
+}
