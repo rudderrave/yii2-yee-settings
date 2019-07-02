@@ -16,7 +16,7 @@ Installation
 Either run
 
 ```
-composer require --prefer-dist yeesoft/yii2-yee-settings "~0.1.0"
+composer require --prefer-dist rudderrave/yii2-yee-settings "dev-master"
 ```
 
 or add
