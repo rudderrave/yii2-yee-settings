@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "rudderrave/yii2-yee-core": "dev-master"
+    "rudderrave/yii2-yee-core-rest": "dev-master"
   },
   "autoload": {
     "psr-4": {
