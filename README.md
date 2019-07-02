@@ -1,7 +1,5 @@
 # yii2-yee-settings
 
-##Yee CMS - Settings Module
-
 ####Module for managing settings 
 
 This module is part of Yee CMS (based on Yii2 Framework).
@@ -171,7 +169,3 @@ class ImageSettingsController extends \yeesoft\settings\controllers\SettingsBase
 
 - Open your settings page: `yoursite.com/admin/image-settings`
   
-Screenshots
--------  
-
-[Flickr - Yee CMS Settings Module](https://www.flickr.com/photos/134050409@N07/sets/72157656663599746)
