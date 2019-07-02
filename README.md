@@ -2,8 +2,6 @@
 
 ####Module for managing settings 
 
-This module is part of Yee CMS (based on Yii2 Framework).
-
 Settings module lets you easily create settings pages. After module installation general settings page will be created. This page contains such options as `site title`, `time format` and `date format`, `timezone`, etc.
 
 Also you can use setting component. It allows you to get and set settings from application.
@@ -20,7 +18,7 @@ composer require --prefer-dist rudderrave/yii2-yee-settings "dev-master"
 or add
 
 ```
-"yeesoft/yii2-yee-settings": "~0.1.0"
+"rudderrave/yii2-yee-settings": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
@@ -28,7 +26,7 @@ to the require section of your `composer.json` file.
 Run migrations:
 
 ```php
-yii migrate --migrationPath=@vendor/yeesoft/yii2-yee-settings/migrations/
+yii migrate --migrationPath=@vendor/rudderrave/yii2-yee-settings/migrations/
 ```
 
 Configuration
