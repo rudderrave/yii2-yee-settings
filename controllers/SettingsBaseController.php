@@ -4,6 +4,7 @@ namespace yeesoft\settings\controllers;
 
 use yeesoft\controllers\admin\BaseController;
 use Yii;
+use yeesoft\models\User;
 
 /**
  * SettingsBaseController implements base actions for settings pages.
@@ -41,15 +42,18 @@ abstract class SettingsBaseController extends BaseController
      */
     public function actionIndex()
     {
-        $modelClass = $this->modelClass;
-        $model = new $modelClass();
+        if ( User::hasPermission('changeGeneralSettings') || User::hasPermission('changeReadingSettings')) {
+            $modelClass = $this->modelClass;
+            $model = new $modelClass();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->save();
-            Yii::$app->session->setFlash('crudMessage', 'Your settings have been saved.');
-            return $this->redirect($this->enableOnlyActions);
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $model->save();
+                Yii::$app->session->setFlash('crudMessage', 'Your settings have been saved.');
+                return $this->redirect($this->enableOnlyActions);
+            }
+
+            return $this->renderIsAjax($this->viewPath, compact('model'));
         }
-
-        return $this->renderIsAjax($this->viewPath, compact('model'));
+        return $this->redirect('/');
     }
 }

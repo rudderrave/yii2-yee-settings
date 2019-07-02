@@ -5,6 +5,7 @@ namespace yeesoft\settings\controllers;
 use yeesoft\controllers\admin\BaseController;
 use yeesoft\helpers\YeeHelper;
 use Yii;
+use yeesoft\models\User;
 
 /**
  * CacheController implements Flush Cache page.
@@ -20,26 +21,29 @@ class CacheController extends BaseController
 
     public function actionFlush()
     {
-        $frontendAssetPath = Yii::getAlias('@frontend') . '/web/assets/';
-        $backendAssetPath = Yii::getAlias('@backend') . '/web/assets/';
+        if ( User::hasPermission('changeGeneralSettings') ) {
+            $frontendAssetPath = Yii::getAlias('@frontend') . '/web/assets/';
+            $backendAssetPath = Yii::getAlias('@backend') . '/web/assets/';
 
-        YeeHelper::recursiveDelete($frontendAssetPath);
-        YeeHelper::recursiveDelete($backendAssetPath);
-        
-        if (!is_dir($frontendAssetPath)) {
-            @mkdir($frontendAssetPath);
-        }
-        
-        if (!is_dir($backendAssetPath)) {
-            @mkdir($backendAssetPath);
-        }
+            YeeHelper::recursiveDelete($frontendAssetPath);
+            YeeHelper::recursiveDelete($backendAssetPath);
 
-        if (Yii::$app->cache->flush()) {
-            Yii::$app->session->setFlash('crudMessage', 'Cache has been flushed.');
-        } else {
-            Yii::$app->session->setFlash('crudMessage', 'Failed to flush cache.');
-        }
+            if (!is_dir($frontendAssetPath)) {
+                @mkdir($frontendAssetPath);
+            }
 
-        return Yii::$app->getResponse()->redirect(Yii::$app->getRequest()->referrer);
+            if (!is_dir($backendAssetPath)) {
+                @mkdir($backendAssetPath);
+            }
+
+            if (Yii::$app->cache->flush()) {
+                Yii::$app->session->setFlash('crudMessage', 'Cache has been flushed.');
+            } else {
+                Yii::$app->session->setFlash('crudMessage', 'Failed to flush cache.');
+            }
+
+            return Yii::$app->getResponse()->redirect(Yii::$app->getRequest()->referrer);
+        }
+        return $this->redirect('/');
     }
 }
