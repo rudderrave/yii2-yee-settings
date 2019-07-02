@@ -1,15 +1,15 @@
 {
-  "name": "yeesoft/yii2-yee-settings",
-  "description": "Settings Module For Yee CMS",
+  "name": "rudderrave/yii2-yee-settings",
+  "description": "Settings Module",
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "Taras Makitra",
-      "email": "makitrataras@gmail.com"
+      "name": "Rave",
+      "email": "rudder.rave@gmail.com"
     }
   ],
   "require": {
-    "yeesoft/yii2-yee-core": "~0.1.0"
+    "rudderrave/yii2-yee-core": "dev-master"
   },
   "autoload": {
     "psr-4": {
