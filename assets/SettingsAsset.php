@@ -11,7 +11,7 @@ use yii\web\AssetBundle;
  */
 class SettingsAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/yeesoft/yii2-yee-settings/assets/source';
+    public $sourcePath = '@vendor/rudderrave/yii2-yee-settings/assets/source';
     public $css = [
         'css/settings.css',
     ];

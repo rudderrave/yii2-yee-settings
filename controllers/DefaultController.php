@@ -10,6 +10,6 @@ namespace yeesoft\settings\controllers;
 class DefaultController extends SettingsBaseController
 {
     public $modelClass = 'yeesoft\settings\models\GeneralSettings';
-    public $viewPath = '@vendor/yeesoft/yii2-yee-settings/views/default/index';
+    public $viewPath = '@vendor/rudderrave/yii2-yee-settings/views/default/index';
 
 }

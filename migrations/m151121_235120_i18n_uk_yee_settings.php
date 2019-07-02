@@ -7,7 +7,7 @@ class m151121_235120_i18n_uk_yee_settings extends TranslatedMessagesMigration
 
     public function getLanguage()
     {
-        return 'uk';
+        return 'uk-UK';
     }
 
     public function getCategory()

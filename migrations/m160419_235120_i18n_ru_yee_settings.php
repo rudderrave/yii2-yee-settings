@@ -7,7 +7,7 @@ class m160419_235120_i18n_ru_yee_settings extends TranslatedMessagesMigration
 
     public function getLanguage()
     {
-        return 'ru';
+        return 'ru-RU';
     }
 
     public function getCategory()
